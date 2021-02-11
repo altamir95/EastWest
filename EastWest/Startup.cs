@@ -30,7 +30,7 @@ namespace EastWest
             services.AddTransient<IOrderFilter, OrderListFilter>();
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<OrderContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ShopContext>(options => options.UseSqlServer(connection));
 
             services.AddControllers()
     .AddNewtonsoftJson(options =>

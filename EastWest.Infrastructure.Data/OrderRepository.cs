@@ -9,8 +9,8 @@ namespace EastWest.Infrastructure.Data
 {
     public class OrderRepository : IOrderRepository
     {
-        OrderContext db;
-        public OrderRepository(OrderContext context)
+        ShopContext db;
+        public OrderRepository(ShopContext context)
         {
             db = context;
 
