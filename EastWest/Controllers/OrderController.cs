@@ -1,12 +1,10 @@
 ﻿using EastWest.Domain.Core;
 using EastWest.Domain.Interfaces;
 using EastWest.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EastWest.Controllers
 {
@@ -21,6 +19,7 @@ namespace EastWest.Controllers
             repo = r;
             order = f;
         }
+
         // GET api/order
         [HttpGet]
         public ActionResult<IEnumerable<Order>> Get()

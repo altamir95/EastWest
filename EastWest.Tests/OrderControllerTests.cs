@@ -1,14 +1,11 @@
 ﻿using EastWest.Controllers;
 using EastWest.Domain.Core;
 using EastWest.Domain.Interfaces;
-using EastWest.Infrastructure.Business;
 using EastWest.Services.Interfaces;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace EastWest.Tests
@@ -21,13 +18,10 @@ namespace EastWest.Tests
             // Arrange
             var mockRepo = new Mock<IOrderRepository>();
             mockRepo.Setup(repo => repo.GetOrder(1)).Returns(GetTestUser());
-
             var mockOrder = new Mock<IOrderFilter>();
-
             var controller = new OrderController(mockRepo.Object, mockOrder.Object);
             // Act
             var result =controller.Get(1);
-
             // Assert
             Assert.Equal(GetTestUser().OrderedProducts.Count, result.Value.OrderedProducts.Count);
         }
@@ -38,13 +32,10 @@ namespace EastWest.Tests
             // Arrange
             var mockRepo = new Mock<IOrderRepository>();
             mockRepo.Setup(repo => repo.GetOrderList()).Returns(GetTestUsers());
-
             var mockOrder = new Mock<IOrderFilter>();
-
             var controller = new OrderController(mockRepo.Object, mockOrder.Object);
             // Act
             var result = controller.Get();
-
             // Assert
             Assert.Equal(GetTestUsers().Count, result.Value.ToList().Count);
         }
@@ -58,7 +49,6 @@ namespace EastWest.Tests
                 new Order { OrderId=2,CustomerId=2, Customer= new Customer(){CustomerId=2,  Name = "Alex"}, DateTime = new DateTime(2016, 7, 20), OrderedProducts= new List<OrderedProduct>(){new OrderedProduct {OrderedProductId=2, OrderId = 2, ProductId = 2, Product= new Product { ProductId=2, Name = "Hershey's Cookies & Cream" } } }},
                 new Order { OrderId=3,CustomerId=3, Customer= new Customer(){CustomerId=3,  Name = "Harry"}, DateTime = new DateTime(2017, 7, 20), OrderedProducts= new List<OrderedProduct>(){new OrderedProduct {OrderedProductId=3, OrderId = 3, ProductId = 3, Product = new Product { ProductId = 3, Name = "Snickers" } } }},
                 new Order { OrderId=4,CustomerId=4, Customer= new Customer(){CustomerId=4,  Name = "Oliver"}, DateTime = new DateTime(2018, 7, 20), OrderedProducts= new List<OrderedProduct>(){new OrderedProduct {OrderedProductId=4, OrderId = 4, ProductId = 4, Product = new Product { ProductId = 4, Name = "Bounty" } } }},
-
             };
             return orders;
         }

@@ -94,7 +94,6 @@ namespace EastWest.Infrastructure.Data
         public Order GetOrder(int id)
         {
             return db.Orders.Include(c=>c.Customer).Include(o=>o.OrderedProducts).ThenInclude(p=>p.Product).FirstOrDefault(p => p.OrderId == id);
-
         }
 
         public List<Order> GetOrderList()
